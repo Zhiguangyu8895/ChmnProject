@@ -9,10 +9,20 @@
             <translation type="vanished">Hello</translation>
         </message>
         <message>
-            <location filename="nextPresidentSpeech/behavior.xar" line="0"/>
             <source>では社長、スピーチお願いします。</source>
             <comment>Text</comment>
-            <translation type="unfinished">では社長、スピーチお願いします。</translation>
+            <translation type="obsolete">では社長、スピーチお願いします。</translation>
+        </message>
+        <message>
+            <source>では社長、締めのスピーチお願いします。</source>
+            <comment>Text</comment>
+            <translation type="obsolete">では社長、締めのスピーチお願いします。</translation>
+        </message>
+        <message>
+            <location filename="nextPresidentSpeech/behavior.xar" line="0"/>
+            <source>では社長、締めのスピーチをお願いします。</source>
+            <comment>Text</comment>
+            <translation type="unfinished">では社長、締めのスピーチをお願いします。</translation>
         </message>
     </context>
     <context>

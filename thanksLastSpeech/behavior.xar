@@ -173,12 +173,6 @@ class MyClass(GeneratedClass):
             p = str(p)
             param = str(param)
 
-        self.logger.info("param is " + str(param) + " and type is " + str(type(param)))
-
-        self.logger.info("p is " + str(p) + " and type is " + str(type(p)))
-        if ( p == param):
-            self.logger.info("********************p == param*****************************")
-
         operator = self.getParameter("Condition operator")
         if( operator == "<" ):
             self.outputTrueOrFalse( p < param )
