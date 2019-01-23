@@ -33,7 +33,7 @@ Choregrapheを開き、ChmnProjectを導入する
 allBehaviorsのbehavior.xarから開始します。  
 ****  
 ## 司会者プロジェクトの構造の説明  
-======  
+  
 ### Behaviorまとめ  
 0.allBehaviors：すべてのBehaviorのまとめとなるBehavior  
 1.startmeeting：シャンシャンが全体会議の開始をアナウンスする。  
@@ -86,7 +86,8 @@ PreNoとCSVDataを読み込み、現在の発言者の発言時間を認識す�
 7.nextPresidentSpeech  
 次は社長に締めのスピーチをお願いする。  
   
-8.endMeeting：閉会のアナウンスする。  
+8.endMeeting
+閉会のアナウンスする。  
   
 ### カスタムしたコードの説明  
 本プロジェクトではメモリの中のCSVDataから必要なデータを抽出するため、  
@@ -109,11 +110,11 @@ eg.startNextSpeechのstartNextSpeechボックス
 `csvData=self.memory.getData("CSVData") #CSVDataを取得する`  
 `currentPreNo=self.memory.getData("PreNo") #現在発言者の番号を取得する`  
 `for line in csvData.splitlines(): #行ごとに処理する`  
-    `for word in line.split(',')[0]: #「,」を区切り文字とする場合の配列の一番目の文字列、番号に当たる`  
-        `if word==str(currentPreNo): #現在発言者の番号と一致する場合`  
-            `department=line.split(',')[1]#二番目の文字列、部署`  
-            `presenter=line.split(',')[2]#三番目の文字列、名前`  
-            `break`  
+`    for word in line.split(',')[0]: #「,」を区切り文字とする場合の配列の一番目の文字列、番号に当たる`  
+`        if word==str(currentPreNo): #現在発言者の番号と一致する場合`  
+`            department=line.split(',')[1]#二番目の文字列、部署`  
+`            presenter=line.split(',')[2]#三番目の文字列、名前`  
+`            break`  
   
 他にも似たように、先にメモリからデータを取り出して、もろもろ操作を行います。  
   
