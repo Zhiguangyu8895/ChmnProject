@@ -12,6 +12,9 @@
  <contents>
   <behaviorContent path="startmeeting">
    <nature>interactive</nature>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="startNextSpeech">
@@ -20,6 +23,9 @@
   </behaviorContent>
   <behaviorContent path="thanksLastSpeech">
    <nature>interactive</nature>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="endMeeting">
@@ -28,6 +34,9 @@
   </behaviorContent>
   <behaviorContent path="allBehaviors">
    <nature>interactive</nature>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="nextPresidentSpeech">
@@ -39,6 +48,13 @@
    <permissions/>
   </behaviorContent>
   <behaviorContent path="checkSpeechEnd">
+   <nature>interactive</nature>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="loadAgenda">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>

@@ -10,16 +10,16 @@
         <BehaviorDescription name="behavior" src="nextPresidentSpeech" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="checkSpeechTimeout" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="checkSpeechEnd" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="loadAgenda" xar="behavior.xar" />
     </BehaviorDescriptions>
     <Dialogs />
-    <Resources>
-        <File name="agenda" src="agenda.csv" />
-        <File name="LICENSE" src="LICENSE" />
-        <File name="README" src="README.md" />
-    </Resources>
+    <Resources />
     <Topics />
     <IgnoredPaths>
+        <Path src="README.md" />
         <Path src="speechEndTest.txt" />
+        <Path src="agenda.csv" />
+        <Path src="LICENSE" />
     </IgnoredPaths>
     <Translations auto-fill="en_US">
         <Translation name="translation_en_US" src="translations/translation_en_US.ts" language="en_US" />
