@@ -70,10 +70,9 @@
     <context>
         <name>thanksLastSpeech/behavior.xar:/Say Timeout</name>
         <message>
-            <location filename="thanksLastSpeech/behavior.xar" line="0"/>
             <source>時間です、ご注意お願いします。</source>
             <comment>Text</comment>
-            <translation type="unfinished">時間です、ご注意お願いします。</translation>
+            <translation type="obsolete">時間です、ご注意お願いします。</translation>
         </message>
     </context>
 </TS>
