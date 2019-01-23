@@ -107,14 +107,14 @@ Pythonでコードを書けるAnimatedSayTextボックスを多用していま�
 のようにメモリからデータを取り出せます。  
   
 eg.startNextSpeechのstartNextSpeechボックス  
-`csvData=self.memory.getData("CSVData") #CSVDataを取得する`  
-`currentPreNo=self.memory.getData("PreNo") #現在発言者の番号を取得する`  
-`for line in csvData.splitlines(): #行ごとに処理する`  
-`    for word in line.split(',')[0]: #「,」を区切り文字とする場合の配列の一番目の文字列、番号に当たる`  
-`        if word==str(currentPreNo): #現在発言者の番号と一致する場合`  
-`            department=line.split(',')[1]#二番目の文字列、部署`  
-`            presenter=line.split(',')[2]#三番目の文字列、名前`  
-`            break`  
+    csvData=self.memory.getData("CSVData") #CSVDataを取得する
+    currentPreNo=self.memory.getData("PreNo") #現在発言者の番号を取得する
+    for line in csvData.splitlines(): #行ごとに処理する
+        for word in line.split(',')[0]: #「,」を区切り文字とする場合の配列の一番目の文字列、番号に当たる
+            if word==str(currentPreNo): #現在発言者の番号と一致する場合
+                department=line.split(',')[1]#二番目の文字列、部署
+                presenter=line.split(',')[2]#三番目の文字列、名前
+                break
   
 他にも似たように、先にメモリからデータを取り出して、もろもろ操作を行います。  
   
