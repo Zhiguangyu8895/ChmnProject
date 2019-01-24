@@ -10,22 +10,12 @@
   <language>en_US</language>
  </descriptionLanguages>
  <contents>
-  <behaviorContent path="startmeeting">
-   <nature>interactive</nature>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
-   <permissions/>
-  </behaviorContent>
   <behaviorContent path="startNextSpeech">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="thanksLastSpeech">
    <nature>interactive</nature>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="endMeeting">
@@ -49,12 +39,13 @@
   </behaviorContent>
   <behaviorContent path="checkSpeechEnd">
    <nature>interactive</nature>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="loadAgenda">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="startMeeting">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
