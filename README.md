@@ -28,9 +28,11 @@ Behaviorまとめ
 ****  
 ## 司会者プロジェクトの使い方  
   
-Choregrapheを開き、ChmnProjectを導入する  
-..LICENSE、README.md、agenda.csv、speechEndTest.txtは導入しなくてもいいです  
-allBehaviorsのbehavior.xarから開始します。  
+1.Choregrapheを開き、ChmnProjectを導入する。  
+..LICENSE、README.md、agenda.csv、sectionEndTest.txtはプロジェクトに導入しなくてもいい。  
+2.checkSectionEndのReadTextとWriteTextのFilePath、loadAgendaのReadTextのFilePathに各ファイルの絶対パスを入れる。  
+3.allBehaviorsのbehavior.xarを実行する。  
+4.各発言者がスピーチを終わったら、sectionEndTestの内容を「Y」に書き換える。
 ****  
 ## 司会者プロジェクトの構造の説明  
   
@@ -40,17 +42,17 @@ allBehaviorsのbehavior.xarから開始します。
 2.loadAgenda：アジェンダを読み込む。  
 3.startNextSpeech：次の発言者の部署と名前を認識し、アナウンスする。  
 4.checkSpeechTimeout：次のスピーチの所要時間を読み込み、時間になったらタイムオーバーのアナウンスする。  
-5.checkSpeechEnd：発言者をセンサーで認識し、発言終わりを監視する。  
-6.thanksLastSpeech：発言終わったら、感謝の言葉を流れる。  
+5.checkSectionEnd：発言終わりを監視する。 *センサーによる監視の実装はまだ終わってないので、当面はsectionEndTestの内容を監視   
+6.thanksPreSpeech：発言終わったら、感謝の言葉を流れる。  
 7.nextPresidentSpeech：すべての発言者が発表し終わったら、次は社長に締めのスピーチをお願いする。  
 8.endMeeting：閉会のアナウンスする。  
   
 ### 全体会議の流れ説明  
 ０、allBehaviors>１、startMeeting>２、loadAgenda>３、startNextSpeech>  
-４、checkSpeechTimeout&５、checkSpeechEnd>  
-５、checkSpeechEndで発言終わりを監視できたら、checkSpeechTimeout停止＋６、thanksLastSpeech>  
+４、checkSpeechTimeout&５、checkSectionEnd>  
+５、checkSectionEndで発言終わりを監視できたら、checkSpeechTimeout停止＋６、thanksPreSpeech>  
 ifNextPresenterOrPresidentで次に発言者はまだいるかどうかを判断し、いるなら２、loadAgndaに戻りループする>  
-次に発言者がいない場合７、nextPresidentSpeech>５、checkSpeechEnd>８、endMeeting  
+次に発言者がいない場合７、nextPresidentSpeech>５、checkSectionEnd>８、endMeeting  
   
 ### 各Behaviorの詳細説明  
 0.allBehaviors  
@@ -64,23 +66,23 @@ ifNextPresenterOrPresidentで次に発言者はまだいるかどうかを判断
   
 2.loadAgenda  
 アジェンダを読み込む。  
-読み込んだデータをCSVDataに格納する。  
+読み込んだデータをagendaDataに格納する。  
   
 3.startNextSpeech  
 次の発言者の部署と名前を認識し、アナウンスする。  
-PreNoとCSVDataを読み込み、現在の発言者の部署と名前をアナウンスする。  
+PreNoとagendaDataを読み込み、現在の発言者の部署と名前をアナウンスする。  
   
 4.checkSpeechTimeout  
 次のスピーチの所要時間を読み込み、時間になったらタイムオーバーのアナウンスする。  
-PreNoとCSVDataを読み込み、現在の発言者の発言時間を認識する。  
+PreNoとagendaDataを読み込み、現在の発言者の発言時間を認識する。  
 その時間になるまでWait、時間になったらアナウンスする。  
-.時間になる前にcheckSpeechEndが発生したら中止される。  
+.時間になる前にcheckSectionEndが発生したら中止される。  
   
-5.checkSpeechEnd  
+5.checkSectionEnd  
 発言終わりを監視する。  
 発言終わったらcheckSpeechTimeoutを中止する。  
   
-6.thanksLastSpeech  
+6.thanksPreSpeech  
 感謝の言葉を流れる。  
   
 7.nextPresidentSpeech  
@@ -90,12 +92,12 @@ PreNoとCSVDataを読み込み、現在の発言者の発言時間を認識す�
 閉会のアナウンスする。  
   
 ### カスタムしたコードの説明  
-本プロジェクトではメモリの中のCSVDataから必要なデータを抽出するため、  
+本プロジェクトではメモリの中のagendaDataから必要なデータを抽出するため、  
 Pythonでコードを書けるAnimatedSayTextボックスを多用しています。  
 またifNextPresenterOrPresidentの判断でも発言者が最後まで達したかどうかを判断するため  
 コードを書いています。  
   
-まずReadTextボックスを追加し、Pathをテキストファイルの絶対パスを入れます。  
+まずReadTextボックスを追加し、Pathにテキストファイルの絶対パスを入れます。  
 （<https://github.com/yacchin1205/pepper-web-boxes/tree/master/web-boxes/IO/>）  
 そしてInsertDataボックスでメモリにデータを書き込みます。  
 あとは各AnimatedSayTextなどでメモリからデータを取り出して操作します。  
@@ -103,19 +105,19 @@ Pythonでコードを書けるAnimatedSayTextボックスを多用していま�
 データ取り出しコードの共通する部分は、  
 各ボックスの「def onLoad(self):」に「self.memory=ALProxy("ALMemory")」追加  
 「def onUnload(self):」に「self.memory=None」を追加します。これでメモリの読み込むができるようになります。  
-そして「def onInput_onStart(self,p):」で「csvData=self.memory.getData("CSVData")」  
+そして「def onInput_onStart(self,p):」で「agendaData=self.memory.getData("agendaData")」  
 のようにメモリからデータを取り出せます。  
   
 eg.startNextSpeechのstartNextSpeechボックス  
 ```python
-csvData=self.memory.getData("CSVData") #CSVDataを取得する
+agendaData=self.memory.getData("agendaData") #agendaDataを取得する
 currentPreNo=self.memory.getData("PreNo") #現在発言者の番号を取得する
-for line in csvData.splitlines(): #行ごとに処理する
-	for word in line.split(',')[0]: #「,」を区切り文字とする場合の配列の一番目の文字列、番号に当たる
-		if word==str(currentPreNo): #現在発言者の番号と一致する場合
-			department=line.split(',')[1]#二番目の文字列、部署
-			presenter=line.split(',')[2]#三番目の文字列、名前
-			break
+for line in agendaData.splitlines(): #行ごとに処理する
+	word = line.split(',')[0] #「,」を区切り文字とする場合の配列の一番目の文字列、番号に当たる
+	if word==str(currentPreNo): #現在発言者の番号と一致する場合
+		department=line.split(',')[1]#二番目の文字列、部署
+		presenter=line.split(',')[2]#三番目の文字列、名前
+		break
 ```
   
 他にも似たように、先にメモリからデータを取り出して、もろもろ操作を行います。  
@@ -123,6 +125,10 @@ for line in csvData.splitlines(): #行ごとに処理する
 **注意：ReadTextで文字コードをutf8と設定する場合、操作対象となるテキストファイルは「BOMなしのUTF-8」に設定してください。**  
   
   
+
+Tips:
+  バーチャルロボットではプロジェクトの言語がEnglish、実機ではJapaneseかも
+
 TODO：  
 音楽流しながら時間ですのアラート  
   

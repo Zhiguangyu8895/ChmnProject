@@ -4,17 +4,13 @@
   <name lang="en_US">Untitled</name>
  </names>
  <supportedLanguages>
-  <language>en_US</language>
+  <language>ja_JP</language>
  </supportedLanguages>
  <descriptionLanguages>
-  <language>en_US</language>
+  <language>ja_JP</language>
  </descriptionLanguages>
  <contents>
-  <behaviorContent path="startNextSpeech">
-   <nature>interactive</nature>
-   <permissions/>
-  </behaviorContent>
-  <behaviorContent path="thanksLastSpeech">
+  <behaviorContent path="thanksPreSpeech">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
@@ -24,9 +20,6 @@
   </behaviorContent>
   <behaviorContent path="allBehaviors">
    <nature>interactive</nature>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="nextPresidentSpeech">
@@ -37,7 +30,7 @@
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
-  <behaviorContent path="checkSpeechEnd">
+  <behaviorContent path="checkSectionEnd">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
@@ -46,6 +39,30 @@
    <permissions/>
   </behaviorContent>
   <behaviorContent path="startMeeting">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="restTime">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="startNextPart">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="endPrePart">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="randomNextFrase">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="loadParts">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="startNextSpeech">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
