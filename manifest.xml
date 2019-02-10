@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="chmnproject-95a321" version="0.0.0">
+<package version="0.0.0" uuid="chmnproject-95a321">
  <names>
   <name lang="en_US">Untitled</name>
  </names>
  <supportedLanguages>
-  <language>ja_JP</language>
+  <language>en_US</language>
  </supportedLanguages>
  <descriptionLanguages>
-  <language>ja_JP</language>
+  <language>en_US</language>
  </descriptionLanguages>
  <contents>
   <behaviorContent path="thanksPreSpeech">
@@ -19,10 +19,6 @@
    <permissions/>
   </behaviorContent>
   <behaviorContent path="allBehaviors">
-   <nature>interactive</nature>
-   <permissions/>
-  </behaviorContent>
-  <behaviorContent path="nextPresidentSpeech">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>

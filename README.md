@@ -31,13 +31,17 @@ Behavior一覧
 1.Choregrapheを開き、ChmnProjectを導入する。  
 ..LICENSE、README.md、agenda.csv、parts.csv、sectionEndTest.txtはプロジェクトに導入しなくてもいい。  
 ..プロジェクトの「プロパティ」で、プロジェクトの言語設定を正しくする（バーチャルロボットでは英語、実機では日本語など）  
-2.WriteTextとReadTextボックスのFilePathには各ファイルの絶対パスを入れる。  
+2.ファイル内容を編集、確認する。  
+..agenda.csv には発言者番号、所属部署、発言者、制限時間を登録する。  
+..parts.csv　には発言者番号（どの発言者から次のパートに入るかを認識するため）、パート名を登録する。  
+..sectionEndTest.txtの内容は「N」。  
+3.WriteTextとReadTextボックスのFilePathには各ファイルの絶対パスを入れる。  
 ..loadAgenda、loadParts、checkSectionEndに置いてある。  
 ..プロジェクトのファイルで現在記載している「C:\Users\2018NEC57\ChmnProjectlocal\」をGrepして一括変更すればよい。  
 ..Pepper実機で実行するときは、Choregrapheの「接続」＞「アドバンスト」＞「ファイルの転送」でCSVファイルをPepperに転送する。  
 ..そのままでは「/home/nao/」の配下になる。SSH接続して「/home/nao/」で確認できる。  
-3.allBehaviorsのbehavior.xarを実行する。  
-4.各発言者がスピーチを終わるなどで、次の部分を進んでもいい時、sectionEndTestの内容を「Y」に書き換える。  
+4.allBehaviorsのbehavior.xarを実行する。  
+5.各発言者がスピーチを終わるなどで、次の部分を進んでもいい時、sectionEndTest.txtの内容を「Y」に書き換える（内容がYのtxtファイルをアップロードする）。  
   
 ### Behavior一覧  
 1.allBehaviors:すべてのBehaviorのまとめとなるBehavior、ここで会議の流れを組む。  
@@ -57,45 +61,57 @@ Behavior一覧
   
 ### 各Behaviorの詳細説明  
 1.allBehaviors  
-すべてのBehaviorのまとめとなるBehavior。  
-全体会議の流れとその制御はここに詰まっています。  
-.その下の各Behaviorは一個に一つの処理を行い、流れ（ループやその条件判断）はすべてallBehaviorsに設定する。*  
+..すべてのBehaviorのまとめとなるBehavior。  
+..全体会議の流れとその制御はここに詰まっています。  
+..その下の各Behaviorは一個に一つの処理を行い、流れ（ループやその条件判断）はすべてallBehaviorsに設定する。  
+..Behavior以外には分岐判断のifボックスやメモリに保存されているグローバル変数を変更するInsertDataボックスを置いてある。  
+　　
+2.checkSectionEnd  
+..次に進んでいいかどうかを判断する。  
+..2019.2.10　センサーなどによる判断アルゴリズムは未実装のため、現在ではsectionEndTest.txtの内容による判断している。  
   
-1.startmeeting  
-シャンシャンが全体会議の開始をアナウンスする。  
-同時に発言者番号PreNoを1に初期化する。  
+3.checkSpeechTimeout  
+..スピーチの時間になったらタイムオーバーのアナウンスする。  
+..PreNoとagendaDataを読み込み、現在の発言者の発言時間を読み込む。  
+..その時間になるまでWait、時間になったらアナウンスする。  
+..時間になる前にcheckSectionEndが発生したら中止される。  
   
-2.loadAgenda  
-アジェンダを読み込む。  
-読み込んだデータをagendaDataに格納する。  
+4.endMeeting  
+..閉会のアナウンスする。  
   
-3.startNextSpeech  
-次の発言者の部署と名前を認識し、アナウンスする。  
-PreNoとagendaDataを読み込み、現在の発言者の部署と名前をアナウンスする。  
+5.endPrePart  
+..前のパートを閉める。
   
-4.checkSpeechTimeout  
-次のスピーチの所要時間を読み込み、時間になったらタイムオーバーのアナウンスする。  
-PreNoとagendaDataを読み込み、現在の発言者の発言時間を認識する。  
-その時間になるまでWait、時間になったらアナウンスする。  
-.時間になる前にcheckSectionEndが発生したら中止される。  
+6.loadAgenda  
+..アジェンダを読み込む。  
+..読み込んだデータをagendaDataに格納する。  
   
-5.checkSectionEnd  
-発言終わりを監視する。  
-発言終わったらcheckSpeechTimeoutを中止する。  
+7.loadParts  
+..パート情報を読み込む。  
+..読み込んだデータをPartsDataに格納する。  
   
-6.thanksPreSpeech  
-感謝の言葉を流れる。  
+8.randomNextFrase  
+..ランダムに次をつなぐ言葉を言う。
   
-7.nextPresidentSpeech  
-次は社長に締めのスピーチをお願いする。  
+9.restTime  
+..休憩時間に入り、音楽を流す。  
   
-8.endMeeting
-閉会のアナウンスする。  
+10.startMeeting  
+..会議始まりのアナウンス。  
+  
+11.startNextPart  
+..次のパートを開始する。  
+  
+12.startNextSpeech  
+..次の発言者の部署と名前をアナウンスする。  
+  
+13.thanksPreSpeech  
+..感謝の言葉を流れる。  
   
 ### カスタムしたコードの説明  
 本プロジェクトではメモリの中のagendaDataから必要なデータを抽出するため、  
 Pythonでコードを書けるAnimatedSayTextボックスを多用しています。  
-またifNextPresenterOrPresidentの判断でも発言者が最後まで達したかどうかを判断するため  
+またifLastPresenterの判断でも発言者が最後まで達したかどうかを判断するため  
 コードを書いています。  
   
 まずReadTextボックスを追加し、Pathにテキストファイルの絶対パスを入れます。  
@@ -128,10 +144,9 @@ for line in agendaData.splitlines(): #行ごとに処理する
   
 
 Tips:
-  バーチャルロボットではプロジェクトの言語がEnglish、実機ではJapaneseかも
+  バーチャルロボットではプロジェクトの言語がEnglish、実機ではJapanese
 
 TODO:  
-音楽流しながら時間ですのアラート  
-  
+
 例外処理頭のセンサーを使う  
   
