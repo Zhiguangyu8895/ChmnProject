@@ -34,14 +34,12 @@ Behavior一覧
 2.ファイル内容を編集、確認する。  
 ..agenda.csv には発言者番号、所属部署、発言者、制限時間を登録する。  
 ..parts.csv　には発言者番号（どの発言者から次のパートに入るかを認識するため）、パート名を登録する。  
-..sectionEndTest.txtの内容は「N」。  
-3.WriteTextとReadTextボックスのFilePathには各ファイルの絶対パスを入れる。  
-..loadAgenda、loadParts、checkSectionEndに置いてある。  
-..プロジェクトのファイルで現在記載している「C:\Users\2018NEC57\ChmnProjectlocal\」をGrepして一括変更すればよい。  
+..sectionEnd.txtの内容は「N」。  
+3.allBehaviorsのinitVariablesのpath for filesを修正 
 ..Pepper実機で実行するときは、Choregrapheの「接続」＞「アドバンスト」＞「ファイルの転送」でCSVファイルをPepperに転送する。  
 ..そのままでは「/home/nao/」の配下になる。SSH接続して「/home/nao/」で確認できる。  
 4.allBehaviorsのbehavior.xarを実行する。  
-5.各発言者がスピーチを終わるなどで、次の部分を進んでもいい時、sectionEndTest.txtの内容を「Y」に書き換える（内容がYのtxtファイルをアップロードする）。  
+5.各発言者がスピーチを終わるなどで、次の部分を進んでもいい時、sectionEnd.txtの内容を「Y」に書き換える（内容がYのtxtファイルをアップロードする）。  
   
 ### Behavior一覧  
 1.allBehaviors:すべてのBehaviorのまとめとなるBehavior、ここで会議の流れを組む。  
