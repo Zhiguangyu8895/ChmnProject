@@ -20,12 +20,11 @@
     <Resources />
     <Topics />
     <IgnoredPaths>
-        <Path src="README.md" />
         <Path src="agenda.csv" />
-        <Path src="LICENSE" />
-        <Path src="test1.csv" />
         <Path src="parts.csv" />
+        <Path src="README.md" />
         <Path src="sectionEnd.txt" />
+        <Path src="LICENSE" />
     </IgnoredPaths>
     <Translations auto-fill="en_US">
         <Translation name="translation_en_US" src="translations/translation_en_US.ts" language="en_US" />
