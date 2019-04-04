@@ -36,7 +36,7 @@ class MyClass(GeneratedClass):
             sentence = "\RSPD="+ str( self.getParameter("Speed (%)") ) + "\ "
             sentence += "\VCT="+ str( self.getParameter("Voice shaping (%)") ) + "\ "
             sentence += str(p)
-            sentence += "みなさま、こんばんは。これより第14期下期のキックオフミーティングを始めさせていただきます。司会のシャンシャンと申します、よろしくお願いします。"
+            sentence += "みなさま、こんばんは。これより" + str(y) + "年" + str(m) + "月の全体会議を始めさせていただきます。司会のシャンシャンと申します、よろしくお願いします。"
             sentence +=  "\RST\ "
             id = self.tts.post.say(str(sentence), {"speakingMovementMode":movement})
             self.ids.append(id)

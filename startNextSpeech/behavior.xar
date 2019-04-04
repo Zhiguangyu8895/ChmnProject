@@ -77,7 +77,7 @@ class MyClass(GeneratedClass):
 
         if currentPreNo == 1:
             startFrase = "でははじめに"
-            startPart = "経営実績と方針を発表"
+            startPart = "クーリエ"
         else:
             startFrase = ""
             startPart = ""
