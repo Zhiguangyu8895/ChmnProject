@@ -577,6 +577,9 @@ class MyClass(GeneratedClass):
         self.memory.insertData("AgendaPath", "/home/nao/agenda.csv")
         self.memory.insertData("PartsPath", "/home/nao/parts.csv")
         self.memory.insertData("SectionEndFilePath", "/home/nao/sectionEnd.txt")
+        #self.memory.insertData("AgendaPath", "C:\Users\\2019SUNSEERL19\Desktop\pepper\ChmnProject\\agenda.csv")
+        #self.memory.insertData("PartsPath", "C:\Users\\2019SUNSEERL19\Desktop\pepper\ChmnProject\parts.csv")
+        #self.memory.insertData("SectionEndFilePath", "C:\Users\\2019SUNSEERL19\Desktop\pepper\ChmnProject\sectionEnd.txt")
         self.memory.insertData("MusicPath", "")
         self.memory.insertData("AlertPath", "")
 
